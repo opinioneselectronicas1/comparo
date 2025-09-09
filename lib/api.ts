@@ -103,7 +103,7 @@ export async function getAmazon(url: string): Promise<AmazonResponse> {
 
 // Client-side function (use in Client Components)
 export async function analyze(
-  product: AmazonProduct,
+  product: AmazonProduct | null,
   verificador: VerificadorResponse,
   customAsk?: string
 ): Promise<AnalysisResponse> {
@@ -113,9 +113,9 @@ export async function analyze(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      product,
+      product: product, // Siempre incluir el campo, aunque sea null
       verificador,
-      customAsk,
+      ...(customAsk && { customAsk }), // Solo incluir si existe
     }),
   });
   
