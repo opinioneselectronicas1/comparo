@@ -113,9 +113,9 @@ export async function analyze(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      product,
+      product: product, // Siempre incluir el campo, aunque sea null
       verificador,
-      customAsk,
+      ...(customAsk && { customAsk }), // Solo incluir si existe
     }),
   });
   

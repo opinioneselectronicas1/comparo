@@ -31,14 +31,14 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const handleAnalyze = async () => {
-    // Ahora podemos analizar cualquier producto, no solo Amazon
-    
     setIsAnalyzing(true);
     try {
       const result = await analyze(amazonData?.product || null, verificadorData);
       setAnalysis(result);
     } catch (error) {
       console.error("Error en análisis:", error);
+      // Mostrar error al usuario
+      alert("Error al realizar el análisis. Por favor, inténtalo de nuevo.");
     } finally {
       setIsAnalyzing(false);
     }
@@ -160,14 +160,14 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
   return (
     <div className="max-w-7xl mx-auto px-6">
       {/* Header del producto */}
-      <div className="grid lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
         {/* Imagen */}
         <div className="aspect-square bg-gray-50 rounded-xl overflow-hidden border">
           {verificadorData.imagen ? (
             <img
               src={verificadorData.imagen}
               alt={verificadorData.titulo || "Producto"}
-              className="w-full h-full object-contain p-4"
+              className="w-full h-full object-contain p-2 sm:p-4"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -177,45 +177,45 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
         </div>
 
         {/* Información del producto */}
-        <div className="space-y-6">
+        <div className="space-y-4 lg:space-y-6">
           <div>
             <Badge variant="outline" className="mb-2">
               {verificadorData.tienda}
             </Badge>
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-2xl sm:text-3xl font-bold leading-tight">
               {verificadorData.titulo || "Producto sin título"}
             </h1>
           </div>
 
           {/* Estadísticas de precio */}
           {priceStats && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Análisis de Precios</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <div className="text-sm text-blue-600 font-medium">Último Precio</div>
-                  <div className="text-2xl font-bold text-blue-900">
+            <div className="space-y-3 lg:space-y-4">
+              <h3 className="text-lg lg:text-xl font-semibold">Análisis de Precios</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+                <div className="p-3 lg:p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="text-xs sm:text-sm text-blue-600 font-medium">Último Precio</div>
+                  <div className="text-xl lg:text-2xl font-bold text-blue-900">
                     {priceStats.current.toFixed(2)}€
                   </div>
-                  <div className="text-xs text-blue-500 mt-1">
+                  <div className="text-xs text-blue-500 mt-0.5 lg:mt-1">
                     {formatDate(priceStats.lastDate)}
                   </div>
                 </div>
-                <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                  <div className="text-sm text-green-600 font-medium">Precio Mínimo</div>
-                  <div className="text-2xl font-bold text-green-900">
+                <div className="p-3 lg:p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div className="text-xs sm:text-sm text-green-600 font-medium">Precio Mínimo</div>
+                  <div className="text-xl lg:text-2xl font-bold text-green-900">
                     {priceStats.min.toFixed(2)}€
                   </div>
                 </div>
-                <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                  <div className="text-sm text-red-600 font-medium">Precio Máximo</div>
-                  <div className="text-2xl font-bold text-red-900">
+                <div className="p-3 lg:p-4 bg-red-50 rounded-lg border border-red-200">
+                  <div className="text-xs sm:text-sm text-red-600 font-medium">Precio Máximo</div>
+                  <div className="text-xl lg:text-2xl font-bold text-red-900">
                     {priceStats.max.toFixed(2)}€
                   </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="text-sm text-gray-600 font-medium">Precio Promedio</div>
-                  <div className="text-2xl font-bold text-gray-900">
+                <div className="p-3 lg:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium">Precio Promedio</div>
+                  <div className="text-xl lg:text-2xl font-bold text-gray-900">
                     {priceStats.avg.toFixed(2)}€
                   </div>
                 </div>
@@ -224,17 +224,17 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
           )}
 
           {/* Botones de acción */}
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-3 lg:space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button asChild className="w-full" size="lg">
                 <a href={affiliateLink} target="_blank" rel="noopener noreferrer">
-                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  <ShoppingCart className="mr-2 h-4 w-4 flex-shrink-0" />
                   Comprar Ahora
                 </a>
               </Button>
               <Button asChild variant="outline" className="w-full" size="lg">
                 <a href={affiliateLink} target="_blank" rel="noopener noreferrer">
-                  <Package className="mr-2 h-4 w-4" />
+                  <Package className="mr-2 h-4 w-4 flex-shrink-0" />
                   Ver Stock
                 </a>
               </Button>
@@ -242,9 +242,9 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
             
             <Button asChild variant="outline" className="w-full" size="lg">
               <a href={affiliateLink} target="_blank" rel="noopener noreferrer">
-                <Eye className="mr-2 h-4 w-4" />
+                <Eye className="mr-2 h-4 w-4 flex-shrink-0" />
                 Ver en {verificadorData.tienda}
-                <ExternalLink className="ml-2 h-4 w-4" />
+                <ExternalLink className="ml-2 h-4 w-4 flex-shrink-0" />
               </a>
             </Button>
             
@@ -255,29 +255,31 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
               className="w-full"
               size="lg"
             >
-              <Brain className="mr-2 h-4 w-4" />
+              <Brain className="mr-2 h-4 w-4 flex-shrink-0" />
               {isAnalyzing ? "Analizando con IA..." : analysis ? "✓ Análisis Completado" : "Análisis con IA"}
             </Button>
 
-            <div className="flex gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <Button variant="ghost" size="sm" className="flex-1">
-                <Heart className="mr-2 h-4 w-4" />
-                Favoritos
+                <Heart className="mr-1 sm:mr-2 h-4 w-4 flex-shrink-0" />
+                <span className="hidden sm:inline">Favoritos</span>
+                <span className="sm:hidden">♥</span>
               </Button>
               <Button variant="ghost" size="sm" className="flex-1">
-                <Share2 className="mr-2 h-4 w-4" />
-                Compartir
+                <Share2 className="mr-1 sm:mr-2 h-4 w-4 flex-shrink-0" />
+                <span className="hidden sm:inline">Compartir</span>
+                <span className="sm:hidden">↗</span>
               </Button>
             </div>
           </div>
 
           {/* Información adicional de Amazon */}
           {amazonData?.product && (
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 pt-4 border-t">
               {amazonData.product.rating && (
                 <div className="flex items-center gap-2">
                   <Star className="h-4 w-4 text-yellow-500" />
-                  <span>{amazonData.product.rating}/5</span>
+                  <span className="font-medium">{amazonData.product.rating}/5</span>
                   <span className="text-sm text-gray-500">
                     ({amazonData.product.reviews_count} reseñas)
                   </span>
@@ -295,14 +297,14 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
 
       {/* Gráfico de precios */}
       {verificadorData.has_serie_historica && verificadorData.serie_historica.length > 0 && (
-        <Card className="mb-8">
+        <Card className="mb-6 lg:mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingDown className="h-5 w-5" />
               Histórico de Precios
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-3 sm:p-6">
             <PriceChart data={verificadorData.serie_historica} />
           </CardContent>
         </Card>
@@ -310,10 +312,10 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
 
       {/* Análisis con IA */}
       {analysis && (
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="mb-6 lg:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
             <Brain className="h-5 w-5 text-blue-600" />
-            <h2 className="text-2xl font-bold">Análisis Inteligente</h2>
+            <h2 className="text-xl sm:text-2xl font-bold">Análisis Inteligente</h2>
             <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
               Powered by IA
             </Badge>
@@ -324,7 +326,7 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
 
       {/* Detalles del producto de Amazon */}
       {amazonData?.product && (
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Descripción */}
           {amazonData.product.description && (
             <Card>
@@ -344,7 +346,7 @@ export function ProductView({ verificadorData, amazonData }: ProductViewProps) {
                 <CardTitle>Características principales</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2">
+                <div className="space-y-1.5 lg:space-y-2">
                   {amazonData.product.bullet_points.split('\n').map((point, index) => (
                     <div key={index} className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />

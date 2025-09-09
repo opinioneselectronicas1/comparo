@@ -19,6 +19,20 @@ interface AIAnalysisProps {
 export function AIAnalysis({ analysis }: AIAnalysisProps) {
   const { json: data } = analysis;
 
+  // Verificar que tenemos los datos necesarios
+  if (!data || !data.recomendacion) {
+    return (
+      <Card>
+        <CardContent className="p-6">
+          <div className="text-center text-gray-500">
+            <Brain className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+            <p>Error al procesar el análisis. Inténtalo de nuevo.</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   const getRecommendationIcon = () => {
     switch (data.recomendacion) {
       case "comprar":
@@ -53,7 +67,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
   };
 
   return (
-    <div className="space-y-6 mb-8">
+    <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -61,7 +75,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
             Análisis con IA
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 lg:space-y-6">
           {/* Recomendación principal */}
           <div className="flex items-start gap-3">
             {getRecommendationIcon()}
@@ -76,7 +90,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </div>
 
           {/* Resumen */}
-          <div className="p-4 bg-blue-50 rounded-lg">
+          <div className="p-3 lg:p-4 bg-blue-50 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-2">📋 Resumen del Análisis</h4>
             <p className="text-blue-800">{data.resumen}</p>
           </div>
@@ -92,42 +106,52 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-3">
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+            <div className="space-y-2 lg:space-y-3">
               <div className="flex justify-between">
-                <span className="text-gray-600">Último precio:</span>
-                <span className="font-semibold">
-                  {formatPrice(data.analisis_precio.precio_actual)}
+                <span className="text-sm lg:text-base text-gray-600">Último precio:</span>
+                <span className="font-semibold text-sm lg:text-base">
+                  {data.analisis_precio.precio_actual ? formatPrice(data.analisis_precio.precio_actual) : 'N/D'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Precio mínimo:</span>
-                <span className="font-semibold text-green-600">
-                  {formatPrice(data.analisis_precio.min_180d)}
+                <span className="text-sm lg:text-base text-gray-600">Precio mínimo:</span>
+                <span className="font-semibold text-green-600 text-sm lg:text-base">
+                  {data.analisis_precio.min_180d ? formatPrice(data.analisis_precio.min_180d) : 'N/D'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Precio promedio:</span>
-                <span className="font-semibold">
-                  {formatPrice(data.analisis_precio.media_180d)}
+                <span className="text-sm lg:text-base text-gray-600">Precio promedio:</span>
+                <span className="font-semibold text-sm lg:text-base">
+                  {data.analisis_precio.media_180d ? formatPrice(data.analisis_precio.media_180d) : 'N/D'}
                 </span>
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2 lg:space-y-3">
               <div className="flex items-center gap-2">
-                {data.analisis_precio.es_buena_oferta ? (
+                {data.analisis_precio.es_buena_oferta === true ? (
                   <TrendingDown className="h-4 w-4 text-green-600" />
-                ) : (
+                ) : data.analisis_precio.es_buena_oferta === false ? (
                   <TrendingUp className="h-4 w-4 text-red-600" />
+                ) : (
+                  <AlertCircle className="h-4 w-4 text-gray-600" />
                 )}
-                <span className={`font-semibold ${
-                  data.analisis_precio.es_buena_oferta ? "text-green-600" : "text-red-600"
+                <span className={`font-semibold text-sm lg:text-base ${
+                  data.analisis_precio.es_buena_oferta === true 
+                    ? "text-green-600" 
+                    : data.analisis_precio.es_buena_oferta === false 
+                    ? "text-red-600" 
+                    : "text-gray-600"
                 }`}>
-                  {data.analisis_precio.es_buena_oferta ? "Buena oferta" : "Precio alto"}
+                  {data.analisis_precio.es_buena_oferta === true 
+                    ? "Buena oferta" 
+                    : data.analisis_precio.es_buena_oferta === false 
+                    ? "Precio alto" 
+                    : "Precio incierto"}
                 </span>
               </div>
               <p className="text-sm text-gray-600">
-                {data.analisis_precio.motivo_precio}
+                {data.analisis_precio.motivo_precio || "Sin información adicional"}
               </p>
             </div>
           </div>
@@ -135,7 +159,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
       </Card>
 
       {/* Pros y contras */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-green-700">
@@ -145,7 +169,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
-              {data.pros.map((pro, index) => (
+              {(data.pros || []).map((pro, index) => (
                 <li key={index} className="flex items-start gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
                   <span className="text-sm">{pro}</span>
@@ -164,7 +188,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
-              {data.contras.map((contra, index) => (
+              {(data.contras || []).map((contra, index) => (
                 <li key={index} className="flex items-start gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
                   <span className="text-sm">{contra}</span>
