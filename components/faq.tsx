@@ -50,26 +50,26 @@ const FAQ = () => {
   return (
     <div
       id="faq"
-      className="min-h-screen flex items-center justify-center px-6 py-12 xs:py-20"
+      className="min-h-screen flex items-center justify-center px-6 py-12 sm:py-20"
     >
       <div className="max-w-screen-lg">
         <h2 className="text-3xl xs:text-4xl md:text-5xl !leading-[1.15] font-bold tracking-tight text-center">
           Preguntas Frecuentes
         </h2>
-        <p className="mt-3 xs:text-lg text-center text-muted-foreground">
+        <p className="mt-3 text-sm sm:text-base lg:text-lg text-center text-muted-foreground">
           Resolvemos las dudas más comunes sobre nuestro comparador de precios.
         </p>
 
-        <div className="mt-12 grid md:grid-cols-2 bg-background rounded-xl overflow-hidden outline outline-[1px] outline-border outline-offset-[-1px]">
+        <div className="mt-8 sm:mt-12 grid md:grid-cols-2 bg-background rounded-xl overflow-hidden outline outline-[1px] outline-border outline-offset-[-1px]">
           {faq.map(({ question, answer, icon: Icon }) => (
-            <div key={question} className="border p-6 -mt-px -ml-px">
-              <div className="h-8 w-8 xs:h-10 xs:w-10 flex items-center justify-center rounded-full bg-primary/10">
-                <Icon className="h-4 w-4 xs:h-6 xs:w-6 text-primary" />
+            <div key={question} className="border p-4 sm:p-6 -mt-px -ml-px">
+              <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-full bg-primary/10">
+                <Icon className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
               </div>
-              <div className="mt-3 mb-2 flex items-start gap-2 text-lg xs:text-[1.35rem] font-semibold tracking-tight">
+              <div className="mt-3 mb-2 flex items-start gap-2 text-base sm:text-lg lg:text-[1.35rem] font-semibold tracking-tight">
                 <span>{question}</span>
               </div>
-              <p className="text-sm xs:text-base text-muted-foreground">{answer}</p>
+              <p className="text-xs sm:text-sm lg:text-base text-muted-foreground">{answer}</p>
             </div>
           ))}
         </div>

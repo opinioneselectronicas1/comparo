@@ -34,14 +34,14 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto rounded-full text-base shadow-none"
+              className="w-full sm:w-auto rounded-full text-sm sm:text-base shadow-none"
             >
               <TrendingDown className="!h-5 !w-5 mr-2" />
               Ver Histórico de Precios
             </Button>
             <Button
               size="lg"
-              className="w-full sm:w-auto rounded-full text-base"
+              className="w-full sm:w-auto rounded-full text-sm sm:text-base"
             >
               Análisis con IA <ArrowUpRight className="!h-5 !w-5" />
             </Button>

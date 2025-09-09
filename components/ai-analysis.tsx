@@ -67,7 +67,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
   };
 
   return (
-    <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
+    <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
             Análisis con IA
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 lg:space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6">
           {/* Recomendación principal */}
           <div className="flex items-start gap-3">
             {getRecommendationIcon()}
@@ -90,7 +90,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </div>
 
           {/* Resumen */}
-          <div className="p-3 lg:p-4 bg-blue-50 rounded-lg">
+          <div className="p-3 sm:p-4 bg-blue-50 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-2">📋 Resumen del Análisis</h4>
             <p className="text-blue-800">{data.resumen}</p>
           </div>
@@ -106,28 +106,28 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-            <div className="space-y-2 lg:space-y-3">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="space-y-2 sm:space-y-3">
               <div className="flex justify-between">
-                <span className="text-sm lg:text-base text-gray-600">Último precio:</span>
-                <span className="font-semibold text-sm lg:text-base">
+                <span className="text-sm sm:text-base text-gray-600">Último precio:</span>
+                <span className="font-semibold text-sm sm:text-base">
                   {data.analisis_precio.precio_actual ? formatPrice(data.analisis_precio.precio_actual) : 'N/D'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm lg:text-base text-gray-600">Precio mínimo:</span>
-                <span className="font-semibold text-green-600 text-sm lg:text-base">
+                <span className="text-sm sm:text-base text-gray-600">Precio mínimo:</span>
+                <span className="font-semibold text-green-600 text-sm sm:text-base">
                   {data.analisis_precio.min_180d ? formatPrice(data.analisis_precio.min_180d) : 'N/D'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm lg:text-base text-gray-600">Precio promedio:</span>
-                <span className="font-semibold text-sm lg:text-base">
+                <span className="text-sm sm:text-base text-gray-600">Precio promedio:</span>
+                <span className="font-semibold text-sm sm:text-base">
                   {data.analisis_precio.media_180d ? formatPrice(data.analisis_precio.media_180d) : 'N/D'}
                 </span>
               </div>
             </div>
-            <div className="space-y-2 lg:space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <div className="flex items-center gap-2">
                 {data.analisis_precio.es_buena_oferta === true ? (
                   <TrendingDown className="h-4 w-4 text-green-600" />
@@ -136,7 +136,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
                 ) : (
                   <AlertCircle className="h-4 w-4 text-gray-600" />
                 )}
-                <span className={`font-semibold text-sm lg:text-base ${
+                <span className={`font-semibold text-sm sm:text-base ${
                   data.analisis_precio.es_buena_oferta === true 
                     ? "text-green-600" 
                     : data.analisis_precio.es_buena_oferta === false 
@@ -159,7 +159,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
       </Card>
 
       {/* Pros y contras */}
-      <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+      <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-green-700">

@@ -72,14 +72,11 @@ const Pricing = () => {
   const [selectedBillingPeriod, setSelectedBillingPeriod] = useState("monthly");
 
   return (
-    <div
-      id="precios"
-      className="flex flex-col items-center justify-center py-12 xs:py-20 px-6"
-    >
+    <div id="precios" className="flex flex-col items-center justify-center py-12 sm:py-20 px-6">
       <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold text-center tracking-tight">
         Planes y Precios
       </h1>
-      <p className="mt-4 text-center text-muted-foreground max-w-2xl">
+      <p className="mt-4 text-sm sm:text-base text-center text-muted-foreground max-w-2xl">
         Elige el plan que mejor se adapte a tus necesidades de ahorro
       </p>
       <Tabs
@@ -96,12 +93,12 @@ const Pricing = () => {
           </TabsTrigger>
         </TabsList>
       </Tabs>
-      <div className="mt-12 max-w-screen-lg mx-auto grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+      <div className="mt-8 sm:mt-12 max-w-screen-lg mx-auto grid grid-cols-1 lg:grid-cols-3 items-center gap-6 sm:gap-8">
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={cn("relative border rounded-xl p-6 bg-background/50", {
-              "border-[2px] border-primary bg-background py-10": plan.isPopular,
+            className={cn("relative border rounded-xl p-4 sm:p-6 bg-background/50", {
+              "border-[2px] border-primary bg-background py-6 sm:py-10": plan.isPopular,
             })}
           >
             {plan.isPopular && (
@@ -109,7 +106,7 @@ const Pricing = () => {
                 Más Popular
               </Badge>
             )}
-            <h3 className="text-lg font-medium">{plan.name}</h3>
+            <h3 className="text-base sm:text-lg font-medium">{plan.name}</h3>
             <p className="mt-2 text-4xl font-bold">
               {plan.price === 0 ? (
                 "Gratis"
@@ -125,21 +122,21 @@ const Pricing = () => {
                 </>
               )}
             </p>
-            <p className="mt-4 font-medium text-muted-foreground">
+            <p className="mt-4 text-sm sm:text-base font-medium text-muted-foreground">
               {plan.description}
             </p>
 
             <Button
               variant={plan.isPopular ? "default" : "outline"}
               size="lg"
-              className="w-full mt-6 text-base"
+              className="w-full mt-4 sm:mt-6 text-sm sm:text-base"
             >
               {plan.buttonText}
             </Button>
-            <Separator className="my-8" />
+            <Separator className="my-4 sm:my-8" />
             <ul className="space-y-2">
               {plan.features.map((feature) => (
-                <li key={feature.title} className="flex items-start gap-1.5">
+                <li key={feature.title} className="flex items-start gap-1.5 text-sm">
                   <CircleCheck className="h-4 w-4 mt-1 text-green-600" />
                   {feature.title}
                   {feature.tooltip && (

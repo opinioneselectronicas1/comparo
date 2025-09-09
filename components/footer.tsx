@@ -102,6 +102,17 @@ const Footer = () => {
           </div>
         </div>
         <Separator />
+        
+        {/* Disclaimer de afiliados */}
+        <div className="py-4 px-6 xl:px-0 bg-gray-50 dark:bg-gray-900">
+          <div className="text-center">
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              💡 <strong>Transparencia:</strong> Recibimos una pequeña comisión como afiliados cuando compras a través de nuestros enlaces, 
+              sin coste adicional para ti. Esto nos ayuda a mantener el servicio gratuito y seguir mejorando.
+            </p>
+          </div>
+        </div>
+        
         <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-x-2 gap-y-5 px-6 xl:px-0">
           {/* Copyright */}
           <span className="text-muted-foreground text-center sm:text-start">

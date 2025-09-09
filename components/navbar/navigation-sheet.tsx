@@ -17,9 +17,6 @@ export const NavigationSheet = () => {
         <NavMenu orientation="vertical" className="mt-12" />
 
         <div className="mt-8 space-y-4">
-          <Button variant="outline" className="w-full sm:hidden">
-            Iniciar Sesión
-          </Button>
           <Button asChild className="w-full xs:hidden">
             <a href="/#buscar">Comparar Ahora</a>
           </Button>

@@ -113,14 +113,15 @@ export async function analyze(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      product: product, // Siempre incluir el campo, aunque sea null
+      product: product || null, // Permitir null explícitamente para productos no-Amazon
       verificador,
       ...(customAsk && { customAsk }), // Solo incluir si existe
     }),
   });
   
   if (!response.ok) {
-    throw new Error(await response.text());
+    const errorText = await response.text().catch(() => "Error desconocido");
+    throw new Error(`Error en análisis: ${errorText}`);
   }
   
   return response.json();

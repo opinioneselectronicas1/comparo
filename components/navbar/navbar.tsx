@@ -15,9 +15,6 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Button variant="outline" className="hidden sm:inline-flex">
-            Iniciar Sesión
-          </Button>
           <Button asChild className="hidden xs:inline-flex">
             <a href="/#buscar">Comparar Ahora</a>
           </Button>

@@ -49,24 +49,24 @@ const features = [
 
 const Features = () => {
   return (
-    <div id="funcionalidades" className="w-full py-12 xs:py-20 px-6">
+    <div id="funcionalidades" className="w-full py-12 sm:py-20 px-6">
       <h2 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-center">
         Todo lo que necesitas para ahorrar
       </h2>
-      <p className="mt-4 text-center text-muted-foreground max-w-2xl mx-auto">
+      <p className="mt-4 text-sm sm:text-base text-center text-muted-foreground max-w-2xl mx-auto">
         Herramientas inteligentes para encontrar el mejor precio y tomar decisiones de compra informadas
       </p>
-      <div className="w-full max-w-screen-lg mx-auto mt-10 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="w-full max-w-screen-lg mx-auto mt-8 sm:mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="flex flex-col bg-background border rounded-xl py-6 px-5 hover:shadow-lg transition-shadow"
+            className="flex flex-col bg-background border rounded-xl py-4 sm:py-6 px-4 sm:px-5 hover:shadow-lg transition-shadow"
           >
-            <div className="mb-3 h-10 w-10 flex items-center justify-center bg-primary/10 rounded-full">
-              <feature.icon className="h-6 w-6 text-primary" />
+            <div className="mb-3 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center bg-primary/10 rounded-full">
+              <feature.icon className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
             </div>
-            <span className="text-lg font-semibold">{feature.title}</span>
-            <p className="mt-1 text-foreground/80 text-[15px]">
+            <span className="text-base sm:text-lg font-semibold">{feature.title}</span>
+            <p className="mt-1 text-foreground/80 text-sm sm:text-[15px]">
               {feature.description}
             </p>
           </div>

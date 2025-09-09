@@ -62,9 +62,9 @@ const testimonials = [
 ];
 
 const Testimonials = () => (
-  <div id="testimonios" className="flex justify-center items-center py-20">
+  <div id="testimonios" className="flex justify-center items-center py-12 sm:py-20">
     <div className="h-full w-full">
-      <h2 className="mb-12 text-4xl md:text-5xl font-bold text-center tracking-tight px-6">
+      <h2 className="mb-8 sm:mb-12 text-3xl sm:text-4xl md:text-5xl font-bold text-center tracking-tight px-6">
         Lo que dicen nuestros usuarios
       </h2>
       <div className="relative">
@@ -85,7 +85,7 @@ const TestimonialList = () =>
   testimonials.map((testimonial) => (
     <div
       key={testimonial.id}
-      className="min-w-96 max-w-sm bg-accent rounded-xl p-6"
+      className="min-w-80 sm:min-w-96 max-w-sm bg-accent rounded-xl p-4 sm:p-6"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -95,7 +95,7 @@ const TestimonialList = () =>
             </AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-lg font-semibold">{testimonial.name}</p>
+            <p className="text-base sm:text-lg font-semibold">{testimonial.name}</p>
             <p className="text-sm text-gray-500">{testimonial.designation}</p>
             <p className="text-xs text-gray-400">{testimonial.company}</p>
           </div>
@@ -106,7 +106,7 @@ const TestimonialList = () =>
           </Link>
         </Button>
       </div>
-      <p className="mt-5 text-[17px]">{testimonial.testimonial}</p>
+      <p className="mt-4 sm:mt-5 text-sm sm:text-[17px]">{testimonial.testimonial}</p>
     </div>
   ));
 
