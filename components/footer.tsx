@@ -108,7 +108,7 @@ const Footer = () => {
           <div className="text-center">
             <p className="text-xs sm:text-sm text-muted-foreground">
               💡 <strong>Transparencia:</strong> Recibimos una pequeña comisión como afiliados cuando compras a través de nuestros enlaces, 
-              sin coste adicional para ti. Esto nos ayuda a mantener el servicio gratuito y seguir mejorando.
+              sin coste adicional para ti.
             </p>
           </div>
         </div>
