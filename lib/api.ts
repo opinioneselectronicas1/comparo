@@ -103,7 +103,7 @@ export async function getAmazon(url: string): Promise<AmazonResponse> {
 
 // Client-side function (use in Client Components)
 export async function analyze(
-  product: AmazonProduct,
+  product: AmazonProduct | null,
   verificador: VerificadorResponse,
   customAsk?: string
 ): Promise<AnalysisResponse> {

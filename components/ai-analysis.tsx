@@ -77,7 +77,7 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
 
           {/* Resumen */}
           <div className="p-4 bg-blue-50 rounded-lg">
-            <h4 className="font-semibold text-blue-900 mb-2">Resumen</h4>
+            <h4 className="font-semibold text-blue-900 mb-2">📋 Resumen del Análisis</h4>
             <p className="text-blue-800">{data.resumen}</p>
           </div>
         </CardContent>
@@ -87,27 +87,27 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <TrendingDown className="h-5 w-5" />
-            Análisis de Precio
+            <TrendingDown className="h-5 w-5 text-green-600" />
+            💰 Análisis de Precio
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <div className="flex justify-between">
-                <span className="text-gray-600">Precio actual:</span>
+                <span className="text-gray-600">Último precio:</span>
                 <span className="font-semibold">
                   {formatPrice(data.analisis_precio.precio_actual)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Precio mínimo (6 meses):</span>
+                <span className="text-gray-600">Precio mínimo:</span>
                 <span className="font-semibold text-green-600">
                   {formatPrice(data.analisis_precio.min_180d)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Precio promedio (6 meses):</span>
+                <span className="text-gray-600">Precio promedio:</span>
                 <span className="font-semibold">
                   {formatPrice(data.analisis_precio.media_180d)}
                 </span>
@@ -139,8 +139,8 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-green-700">
-              <CheckCircle className="h-5 w-5" />
-              Ventajas
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              ✅ Ventajas
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -158,8 +158,8 @@ export function AIAnalysis({ analysis }: AIAnalysisProps) {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-red-700">
-              <XCircle className="h-5 w-5" />
-              Desventajas
+              <XCircle className="h-5 w-5 text-red-600" />
+              ❌ Desventajas
             </CardTitle>
           </CardHeader>
           <CardContent>
